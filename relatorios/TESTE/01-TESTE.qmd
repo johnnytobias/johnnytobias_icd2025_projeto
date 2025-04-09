@@ -1,0 +1,38 @@
+---
+title: "Untitled"
+format:
+   html:
+    toc: true
+    number-sections: true
+editor: source
+---
+
+# Titulo principal
+## Subseção
+A MANHA VOUB TRABALHAR CEDO
+
+ *vc é gay * 
+ 
+ **vc não**
+ 
+ ## crianto uma lista nao ordenada
+ 
+  - bora beber 
+ 
+  -e ai 
+ 
+     - agora
+     
+     - demorou
+ 
+ ## NOMES GAYS
+ 1. MARLON
+ 2.ARTHUR
+ 
+ ## INSERINDO LINKS PARA PAGINAS DA WEB
+ 
+ [chatgpt](https://chatgpt.com/){target="_blank"}
+ 
+ 
+ 
+ 
