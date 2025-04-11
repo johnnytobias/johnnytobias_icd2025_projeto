@@ -26,12 +26,26 @@ A MANHA VOUB TRABALHAR CEDO
      - demorou
  
  ## NOMES GAYS
+ 
  1. MARLON
+ 
  2.ARTHUR
  
  ## INSERINDO LINKS PARA PAGINAS DA WEB
  
  [chatgpt](https://chatgpt.com/){target="_blank"}
+ 
+ ## celulas de codigo
+ 
+ para inserir uma celula de codigo no arquivo quarto podemos utilizar o atalho ctra +alt+i':
+```{r}
+# simulando uma va com distribuição normal padrão.
+
+x <- rnorm(1000)
+
+# grafico de linha da variavel simulada do meu coração
+plot(x, type = "l")
+```
  
  
  
