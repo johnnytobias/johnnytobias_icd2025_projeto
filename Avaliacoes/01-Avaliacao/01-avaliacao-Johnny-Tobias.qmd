@@ -202,8 +202,8 @@ dados_conversao <- dados_lojaonline_limpos %>%
    group_by(tipo_de_anuncio) %>% 
    summarize(
       total_de_clientes = n(),
-      porcentagem_de_conversao = mean(convertido, na.rn = TRUE),
-      faturamento_medio_por_anuncio = mean(faturamento, na.rm = TRUE)
+      porcentagem_de_conversao = mean(convertido),
+      faturamento_medio_por_anuncio = mean(faturamento)
    )
 
 # exibe o resultado 
