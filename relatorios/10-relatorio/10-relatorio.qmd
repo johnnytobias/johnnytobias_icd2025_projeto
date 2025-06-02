@@ -2,7 +2,7 @@
 title: "Fundamentos de Probabilidade para Decisões - Parte 2"
 subtitle: "Características da Distribuição de Probabilidade de Variáveis Aleatórias"
 lang: pt-BR
-author: "Seu Nome"
+author: "JOHNNY TOBIAS"
 date: 2025-05-28
 format: 
   html:
@@ -986,5 +986,8 @@ prob_25k
 percentil_90 <- quantile(custos_simulados, 0.90)
 percentil_90
 ```
+```{r}
+qnorm(.05)
 
+```
 
