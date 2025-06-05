@@ -2,7 +2,7 @@
 title: "Análise Exploratória de Dados"
 subtitle: "Análise Exploratória Numérica"
 lang: pt-BR
-author: "Seu Nome"
+author: "johnny tobias"
 date: 2025-06-02
 format: 
   html:
