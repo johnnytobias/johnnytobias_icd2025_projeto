@@ -782,6 +782,37 @@ freqüência absoluta dos estados civis (Dica: código do **slide 21**)
 
 ```{r}
 # seu código aqui
+# Instale o pacote ggplot2 se necessário
+# install.packages("ggplot2")
+
+# Carregar o pacote
+library(ggplot2)
+
+# 1. Vetor com os dados (exemplo)
+estado_civil <- c("Solteiro", "Casado", "Solteiro", "Divorciado", "Casado", 
+                  "Solteiro", "Viúvo", "Casado", "Solteiro", "Divorciado")
+
+# 2. Criar tabela de frequência e converter em data frame
+freq_tabela <- as.data.frame(table(estado_civil))
+
+# 3. Renomear colunas para melhor visualização
+colnames(freq_tabela) <- c("Estado_Civil", "Frequencia")
+
+# 4. Ordenar em ordem decrescente da frequência
+freq_tabela <- freq_tabela[order(-freq_tabela$Frequencia), ]
+
+# 5. Criar gráfico de barras horizontal com ggplot2
+ggplot(freq_tabela, aes(x = reorder(Estado_Civil, Frequencia), y = Frequencia)) +
+  geom_bar(stat = "identity", fill = "BLACK") +
+  coord_flip() +
+  labs(
+    title = "Número de Respondentes por Estado Civil",
+    x = "Estado Civil",
+    y = "Frequência"
+  ) +
+  theme_minimal()
+B
+
 ```
 
 2. Crie um gráfico de barras horizontais básico:
