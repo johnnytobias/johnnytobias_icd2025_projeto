@@ -2,7 +2,7 @@
 title: "Análise Exploratória de Dados"
 subtitle: "Introdução à Inferência Estatística- Parte 1"
 lang: pt-BR
-author: "Seu Nome"
+author: "johnny  tobias "
 date: 2025-06-25
 format: 
   html:
