@@ -41,6 +41,13 @@ library(effectsize)
 
 ```{r}
 # insira o código aqui
+prob_sinistro <- 0.01
+indenizacao_media <- 150000
+
+premio_puro <- prob_sinistro * indenizacao_media
+
+premio_puro
+
 ```
 
 
@@ -48,6 +55,15 @@ library(effectsize)
 
 ```{r}
 # insira o código aqui
+margem <- 0.25
+premio_puro <- prob_sinistro * indenizacao_media
+
+# Cálculo do prêmio comercial
+premio_comercial <- premio_puro * (1 + margem)
+
+# Exibir os resultados
+premio_puro
+premio_comercial
 ```
 
 
@@ -61,33 +77,58 @@ set.seed(2025)
 
 ## simula o custo para 10 residências seguradas
 custos_10 <- sample(
-  c(____, ____),        # preencha com os dois valores de custos possíveis: sem sinistro e com sinistro
-  size = ____,          # número total de residências a serem simuladas
-  replace = ____,       # indique se a amostragem será com reposição
-  prob = c(____, ____)  # probabilidades de cada um dos dois resultados (sinistro e não sinistro)
+  c(0,150000),        # preencha com os dois valores de custos possíveis: sem sinistro e com sinistro
+  size = 10,          # número total de residências a serem simuladas
+  replace = TRUE,       # indique se a amostragem será com reposição
+  prob = c(0.99,0.01)  # probabilidades de cada um dos dois resultados (sinistro e não sinistro)
   ) 
 
 ## estimativa do custo médio por apólice com 10 residências seguradas
-____(custos_10)         # função para calcular a média do vetor simulado
+mean(custos_10)         # função para calcular a média do vetor simulado
 ```
 
 
 Simulação dos custos médios com 100 residências seguradas:
 
 ```{r}
-# insira o código aqui
+## fixa a semente para reprodutibilidade
+set.seed(2025)
+
+## simula o custo para 10 residências seguradas
+custos_10 <- sample(
+  c(0,150000),        # preencha com os dois valores de custos possíveis: sem sinistro e com sinistro
+  size = 100,          # número total de residências a serem simuladas
+  replace = TRUE,       # indique se a amostragem será com reposição
+  prob = c(0.99,0.01)  # probabilidades de cada um dos dois resultados (sinistro e não sinistro)
+  ) 
+
+## estimativa do custo médio por apólice com 10 residências seguradas
+mean(custos_10)         # função para calcular a média do vetor simulado
 ```
 
 
 Simulação dos custos médios com 1000 residências seguradas:
 
 ```{r}
-# insira o código aqui
+## fixa a semente para reprodutibilidade
+set.seed(2025)
+
+## simula o custo para 10 residências seguradas
+custos_10 <- sample(
+  c(0,150000),        # preencha com os dois valores de custos possíveis: sem sinistro e com sinistro
+  size = 1000,          # número total de residências a serem simuladas
+  replace = TRUE,       # indique se a amostragem será com reposição
+  prob = c(0.99,0.01)  # probabilidades de cada um dos dois resultados (sinistro e não sinistro)
+  ) 
+
+## estimativa do custo médio por apólice com 10 residências seguradas
+mean(custos_10)         # função para calcular a média do vetor simulado
 ```
 
 
-**d)**
 
+**d)**
+observamos a 
 
 
 
@@ -160,13 +201,17 @@ Reposta:
 **a)**
 
 ```{r}
-# insira o código aqui
 ```
 
 Cálculo do VaR 99% percentual:
 
 ```{r}
-# insira o código aqui
+
+valor_investido <- 400000
+retorno_medio <- 0.011
+volatilidade <- 0.042
+z_99 <- -2.326
+
 ```
 
 Cálculo do VaR 99% monetário (valor absoluto da perda):
@@ -221,7 +266,14 @@ Por que as demais estão erradas?
 
 
 ```{r}
-# insira o código aqui
+dados_precos <- c("PETR4.SA", "WEGE3.SA") %>%
+  tq_get(from = "2024-01-01") %>%
+  select(symbol, date, close) %>%
+  pivot_wider(names_from = symbol, values_from = close) %>%
+  rename(petrobras = `PETR4.SA`, weg = `WEGE3.SA`)
+
+head(dados_precos)
+
 ```
 
 
@@ -246,6 +298,20 @@ head(dados_ret)
 
 ```{r}
 # insira o código aqui
+# Calcular os retornos diários
+dados_retornos <- dados_precos %>%
+  mutate(
+    ret_petrobras = (petrobras / lag(petrobras)) - 1,
+    ret_weg = (weg / lag(weg)) - 1
+  ) %>%
+  na.omit()  # remover NA gerado pelo lag
+
+# Estimar o coeficiente de correlação de Pearson
+correlacao <- cor(dados_retornos$ret_petrobras, dados_retornos$ret_weg)
+
+# Exibir o resultado
+correlacao
+
 ```
 
 
@@ -253,6 +319,13 @@ head(dados_ret)
 
 ```{r}
 # insira o código aqui
+
+# Interpretar a correlação usando critérios de Cohen
+interpretacao <- interpret_r(correlacao, rules = "cohen1988")
+
+# Exibir o resultado
+interpretacao
+
 ```
 
 **Interpretação:**

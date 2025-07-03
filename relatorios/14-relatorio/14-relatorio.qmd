@@ -28,7 +28,8 @@ options(digits = 5, scipen = 999)
 library(tidyverse)  # Inclui dplyr, tidyr, ggplot2...
 library(patchwork)  # Para combinar gráficos
 library(abjData)    # Dados municipais do PNUD
-library(sampling)   # Técnicas clássicas de amostragem
+library(sampling)# Técnicas clássicas de amostragem
+library(dplyr) 
 ```
 
 
@@ -377,11 +378,14 @@ resultados_pesquisa
 
 **Identifique:**
 
-1. Qual é a população?
-2. Qual é a amostra?
-3. O que representa $\mu$?
-4. O que representa $\bar{x}$?
-5. Por que não avaliar todas as garrafas?
+1. Qual é a população? 8.000
+2. Qual é a amostra? 120 amotra
+3. O que representa $\mu$? μ
+  = Qualidade média verdadeira de todas as 8.000 garrafas - parâmetro fixo mas desconhecido
+4. O que representa $\bar{x}$?x¯
+: Qualidade média das 120 garrafas avaliadas - estimativa de μ
+.
+5. Por que não avaliar todas as garrafas? Limitações: Custo elevado, tempo excessivo, e possível natureza destrutiva dos testes.
 
 
 
@@ -393,11 +397,13 @@ estudar ticket médio.
 
 **Identifique:**
 
-1. Qual é a população?
-2. Qual é a amostra?
-3. O que representa $\mu$?
-4. O que representa $\bar{x}$?
-5. Vantagens da abordagem amostral?
+1. Qual é a população?1.200 lojas
+2. Qual é a amostra?80 lojas
+3. O que representa $\mu$?μ
+ = Ticket médio verdadeiro de todas as 1.200 lojas.
+4. O que representa $\bar{x}$?x¯
+  = Ticket médio calculado das 80 lojas analisadas.
+5. Vantagens da abordagem amostral?Economia significativa de tempo e recursos, conclusões mais rápidas para decisões, precisão adequada para fins práticos, análises mais detalhadas possíveis.
 
 
 
@@ -442,9 +448,16 @@ dados_recentes <- pnud_muni %>%
 glimpse(dados_recentes)
 ```
 
-
-
-
+```{r}
+#fixa a semente para reprodutibilidade
+set.seed(234)
+#extrai AAS dos municipios
+amostra_aleatoria_simples <- dados_recentes %>%
+  slice_sample(n = 150)  %>%
+  select(ufn, pop, idhm)
+#exibe a amostra
+amostra_aleatoria_simples
+```
 
 ## Amostragem Estratificada com o pacote `sampling`
 
@@ -538,11 +551,15 @@ Identifique: Parâmetro, Estimador, Estatística ou Estimativa?
 Uma empresa de e-commerce analisa seus pedidos:
 
 1. A fórmula $S^2 = \frac{\sum(X_i - \bar{X})^2}{n-1}$ para calcular variância
+Estimador   ##(fórmula/método para estimar σ2)##
 2. O valor R$ 127,50 calculado como média de 1.000 pedidos
+Estimativa  ##(valor numérico específico de X¯)##
 3. A verdadeira proporção de clientes satisfeitos (nota ≥ 8)
+Parâmetro   ##(p- proporção populacional)##
 4. A variável aleatória $\hat{p}$ = proporção amostral de satisfeitos
+Estatística  ##(variável aleatória)##
 5. O desvio padrão σ = R$ 45,00 de todos os pedidos históricos
-
+Parâmetro   ##(σ - desvio padrão populacional)##
 
 
 
